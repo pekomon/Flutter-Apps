@@ -24,14 +24,18 @@ class DicePage extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
+            child: TextButton(
+              onPressed: () {
+                debugPrint('onPressed dice1');
+              },
               child: Image.asset('images/dice1.png'),
             ),
           ),
           Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
+            child: TextButton(
+              onPressed: () {
+                debugPrint('onPressed dice2');
+              },
               child: Image.asset('images/dice3.png'),
             ),
           ),
