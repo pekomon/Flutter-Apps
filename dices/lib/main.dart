@@ -37,10 +37,7 @@ class _DicePageState extends State<DicePage> {
             child: TextButton(
               onPressed: () {
                 debugPrint('onPressed dice1');
-                setState(() {
-                  rightDice = getRandomDiceNumber();
-                  leftDice = getRandomDiceNumber();
-                });
+                randomizeDices();
               },
               child: Image.asset('images/dice$leftDice.png'),
             ),
@@ -49,10 +46,7 @@ class _DicePageState extends State<DicePage> {
             child: TextButton(
               onPressed: () {
                 debugPrint('onPressed dice2');
-                setState(() {
-                  rightDice = getRandomDiceNumber();
-                  leftDice = getRandomDiceNumber();
-                });
+                randomizeDices();
               },
               child: Image.asset('images/dice$rightDice.png'),
             ),
@@ -60,6 +54,13 @@ class _DicePageState extends State<DicePage> {
         ],
       ),
     );
+  }
+
+  void randomizeDices() {
+    setState(() {
+      rightDice = getRandomDiceNumber();
+      leftDice = getRandomDiceNumber();
+    });
   }
 
   int getRandomDiceNumber() {
