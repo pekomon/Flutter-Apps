@@ -38,6 +38,7 @@ class _DicePageState extends State<DicePage> {
               onPressed: () {
                 debugPrint('onPressed dice1');
                 setState(() {
+                  rightDice = getRandomDiceNumber();
                   leftDice = getRandomDiceNumber();
                 });
               },
@@ -50,6 +51,7 @@ class _DicePageState extends State<DicePage> {
                 debugPrint('onPressed dice2');
                 setState(() {
                   rightDice = getRandomDiceNumber();
+                  leftDice = getRandomDiceNumber();
                 });
               },
               child: Image.asset('images/dice$rightDice.png'),
