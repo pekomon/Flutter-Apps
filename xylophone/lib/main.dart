@@ -13,7 +13,15 @@ class XylophoneApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    //final audioPlayer = AudioPlayer(playerId: 'my_unique_playerId');
+    List buttonColors = [
+      Colors.red,
+      Colors.green,
+      Colors.blue,
+      Colors.pink,
+      Colors.teal,
+      Colors.purple,
+      Colors.yellow,
+    ];
     return MaterialApp(
       title: 'Xylophone',
       theme: ThemeData(
@@ -29,80 +37,31 @@ class XylophoneApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(
+        backgroundColor: Colors.black,
         body: SafeArea(
-          child: Container(
-            child: Column(
-              children: [
-                TextButton(
-                  onPressed: () {
-                    playSound(1);
-                  },
-                  style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.red)),
-                  child: const Text(''),
-                ),
-                TextButton(
-                  onPressed: () {
-                    playSound(2);
-                  },
-                  style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all(Colors.yellow)),
-                  child: const Text(''),
-                ),
-                TextButton(
-                  onPressed: () {
-                    playSound(3);
-                  },
-                  style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all(Colors.purple)),
-                  child: const Text(''),
-                ),
-                TextButton(
-                  onPressed: () {
-                    playSound(4);
-                  },
-                  style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all(Colors.tealAccent)),
-                  child: const Text(''),
-                ),
-                TextButton(
-                  onPressed: () {
-                    playSound(5);
-                  },
-                  style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.pink)),
-                  child: const Text(''),
-                ),
-                TextButton(
-                  onPressed: () {
-                    playSound(6);
-                  },
-                  style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all(Colors.amberAccent)),
-                  child: const Text(''),
-                ),
-                TextButton(
-                  onPressed: () {
-                    playSound(7);
-                  },
-                  style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all(Colors.greenAccent)),
-                  child: const Text(''),
-                ),
-              ],
-            ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              for (var i = 0; i < buttonColors.length; i++)
+                createSoundButton(i + 1, buttonColors[i])
+            ],
           ),
         ),
       ),
     );
   }
 
-  void playSound(int soundNumber) {
-    player.play('note$soundNumber.wav');
+  Widget createSoundButton(int soundNumber, Color color) {
+    return Expanded(
+      child: TextButton(
+        onPressed: () {
+          playSound(soundNumber);
+        },
+        style: ButtonStyle(backgroundColor: MaterialStateProperty.all(color)),
+        child: const Text(''),
+      ),
+    );
   }
+
+  void playSound(int soundNumber) => player.play('note$soundNumber.wav');
 }
